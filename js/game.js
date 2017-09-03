@@ -4,7 +4,11 @@ define(function () {
 
   for (i = _vendors.length; i-- && !window.requestAnimationFrame;) {
     var v = _vendors[i];
-    window.requestAnimationFrame = window[v + "requestAnimationFrame"]
+    window.requestAnimationFrame = window[v + "RequestAnimationFrame"];
+    window.cancelAnimationFrame = window[v + "CancelAnimationFrame"] ||
+                                  window[v + "CancelRequestAnimationFrame"];
+
+
   }
 
   function Game() {

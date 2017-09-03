@@ -1,4 +1,4 @@
-require(["game"], function(Game) {
+require(["game", "tetris"], function(Game, Tetris) {
   function App() {
     Game.apply(this, arguments);
     canvas.width = 480;
@@ -8,6 +8,9 @@ require(["game"], function(Game) {
     content.load('back', 'img/back.png');
     content.load('blocks', 'img/blocks.png');
     content.load('numbers', 'img/numbers.png');
+
+    this.hasLoad = false;
+    this.tetris;
   }
 
 
@@ -15,9 +18,20 @@ require(["game"], function(Game) {
 
 
   App.prototype.tick = function() {
-    if (content.progress() === 1) {
-      canvas.ctx.drawImage(content.get('back'), 0, 0);
+
+    if (this.hasLoad) {
+      this.tetris.handleInputs(input);
+      this.tetris.update();
+      this.tetris.draw(canvas.ctx);
+
+    } else {
+      this.hasLoad = content.progress() === 1;
+      if (this.hasLoad) {
+        this.tetris = new Tetris();
+      }
+
     }
+
   };
 
 

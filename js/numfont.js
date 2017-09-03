@@ -22,9 +22,6 @@ define(function () {
       x += this.width;
 
     }
-
-    console.log(this.img);
-
   };
 
   return Numfont;

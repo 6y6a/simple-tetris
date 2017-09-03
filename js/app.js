@@ -1,4 +1,4 @@
-require(["game", "tetris"], function(Game, Tetris) {
+require(["Game", "Tetris"], function(Game, Tetris) {
   function App() {
     Game.apply(this, arguments);
     canvas.width = 480;
@@ -20,8 +20,7 @@ require(["game", "tetris"], function(Game, Tetris) {
   App.prototype.tick = function() {
 
     if (this.hasLoad) {
-      this.tetris.handleInputs(input);
-      this.tetris.update();
+      this.tetris.update(input);
       this.tetris.draw(canvas.ctx);
 
     } else {

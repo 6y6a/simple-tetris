@@ -1,9 +1,13 @@
-define(['Gameboard', 'StateManager'], function (Gameboard, StateManager) {
+define(['Gameboard', 'StateManager', "Tetramino"], function (Gameboard, StateManager, Tetramino) {
 
   function Tetris (){
 
     this.gameboard = new Gameboard() ;
     this.stat = new StateManager();
+
+    var tet = new Tetramino(Tetramino.S);
+
+    console.log(tet.toString());
   }
 
 

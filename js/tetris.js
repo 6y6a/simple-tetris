@@ -4,16 +4,13 @@ define(['Gameboard', 'StateManager'], function (Gameboard, StateManager) {
 
     this.gameboard = new Gameboard() ;
     this.stat = new StateManager();
-
-
-
   }
 
-  Tetris.prototype.handleInputs = function (input) {
 
-  };
-
-  Tetris.prototype.update = function () {
+  Tetris.prototype.update = function (input) {
+    if (input.pressed("space")) {
+      console.log('space');
+    }
   };
 
   Tetris.prototype.draw = function (ctx) {

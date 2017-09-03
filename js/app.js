@@ -9,6 +9,12 @@ require(["Game", "Tetris"], function(Game, Tetris) {
     content.load('blocks', 'img/blocks.png');
     content.load('numbers', 'img/numbers.png');
 
+    input.bindKey('space', input.Keys.SPACE);
+    input.bindKey('left', input.Keys.LEFT_ARROW);
+    input.bindKey('up', input.Keys.UP_ARROW);
+    input.bindKey('right', input.Keys.RIGHT_ARROW);
+    input.bindKey('down', input.Keys.DOWN_ARROW);
+
     this.hasLoad = false;
     this.tetris;
   }

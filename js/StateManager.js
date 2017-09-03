@@ -16,7 +16,7 @@ define (function () {
     }
   };
 
-  StateManager.prototype.incTetramino(id) {
+  StateManager.prototype.incTetramino = function (id){
     this.tetraminos[id] += 1;
     this.tetraminos.Total += 1;
   }

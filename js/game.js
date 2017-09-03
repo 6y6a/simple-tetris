@@ -1,5 +1,12 @@
 define(function () {
 
+  var _vendors = ["o", "ms", "moz", "webkit"];
+
+  for (i = _vendors.length; i-- && !window.requestAnimationFrame;) {
+    var v = _vendors[i];
+    window.requestAnimationFrame = window[v + "requestAnimationFrame"]
+  }
+
   function Game() {
     this._reqframe;
   }

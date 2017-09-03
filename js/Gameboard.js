@@ -31,5 +31,16 @@ define(['Numfont'], function (Numfont) {
     this.font.gray.draw(ctx, tet.Total, 425, 221, 6);
   };
 
+  Gameboard.prototype.drawBlock = function (ctx, block, x, y) {
+    var id = block.ID,
+        size = 13;
+
+    x = 100 + size*x;
+    y = 100 + size*y;
+
+    ctx.drawImage(this.blocks, id * (size - 1), 0, size, size, x, y, size, size);
+
+  }
+
   return Gameboard;
 });

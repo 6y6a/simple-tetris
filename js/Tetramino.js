@@ -13,6 +13,7 @@ define(function () {
   var IDs = [];
   for (var sd in ShapeDef) {
     ShapeDef[sd] = ShapeDef[sd].replace(/\s+/g, '');
+    IDs.push(sd);
   }
 
   function Tetramino (id, x, y) {
@@ -49,6 +50,56 @@ define(function () {
       this._shapes.push(s);
     }
   }
+
+  Tetramino.prototype.setTo = function(control, id) {
+    id = id != null ? id : this.ID;
+    var shape = this._shapes[this.rotation];
+
+    for (var i = 0; i < shape.length; i++) {
+      for (var j = 0; j < shape.length; j++) {
+        if (shape[j][i]) {
+          control[this.x+i][this.y+j].setType(id);
+        }
+      }
+    }
+  };
+
+  Tetramino.prototype.check = function(control, dx, dy, dr) {
+    dx = dx || 0;
+    dy = dy || 0;
+    dr = dr ? this.getRotation(dr) : this.rotation;
+
+    var x = this.x + dx,
+      y = this.y + dy,
+      w = control.length,
+      h = control[0].length,
+      shape = this._shapes[dr];
+
+    for (var i = 0; i < shape.length; i++) {
+      for (var j = 0; j < shape.length; j++) {
+        if (shape[j][i]) {
+
+          if (!(0 <= x+i && x+i < w && 0 <= y+j && y+j < h) ||
+            control[x+i][y+j].solid
+          ) {
+            return false;
+          }
+        }
+      }
+    }
+
+    return true;
+  };
+
+  Tetramino.prototype.getRotation = function(dr) {
+    var r = this.rotation,
+      l = this._shapes.length;
+    if (dr > 0) {
+      return (r + 1) % l;
+    } else {
+      return r - 1 >= 0 ? r - 1 : l - 1;
+    }
+  };
 
   Tetramino.prototype.toString = function () {
     var str = "";

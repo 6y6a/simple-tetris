@@ -28,19 +28,19 @@ define(['Numfont'], function (Numfont) {
     this.font.yellow.draw(ctx, tet.O, 432, 172, 5);
     this.font.blue.draw(  ctx, tet.J, 432, 196, 5);
 
-    this.font.gray.draw(ctx, tet.Total, 425, 221, 6);
+    this.font.gray.draw(ctx, tet.tot, 425, 221, 6);
   };
 
   Gameboard.prototype.drawBlock = function (ctx, block, x, y) {
     var id = block.ID,
-        size = 13;
+      size = 13;
 
-    x = 100 + size*x;
-    y = 100 + size*y;
+    x = 180 + x*12;
+    y = 4 + y*12;
 
-    ctx.drawImage(this.blocks, id * (size - 1), 0, size, size, x, y, size, size);
+    ctx.drawImage(this.blocks, id*12, 0, size, size, x, y, size, size);
 
-  }
+  };
 
   return Gameboard;
 });

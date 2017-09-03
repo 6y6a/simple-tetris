@@ -26,15 +26,17 @@ require(["Game", "Tetris"], function(Game, Tetris) {
   App.prototype.tick = function() {
 
     if (this.hasLoad) {
+
       this.tetris.update(input);
       this.tetris.draw(canvas.ctx);
 
     } else {
+
       this.hasLoad = content.progress() === 1;
+
       if (this.hasLoad) {
         this.tetris = new Tetris(10, 22);
       }
-
     }
 
   };
@@ -44,6 +46,9 @@ require(["Game", "Tetris"], function(Game, Tetris) {
   (function () {
     var game = new App();
     game.run();
+
+    window.onblur = game.stop.bind(game);
+    window.onfocus = game.run.bind(game);
   })();
 
 

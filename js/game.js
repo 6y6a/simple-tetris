@@ -12,20 +12,31 @@ define(function () {
   }
 
   function Game() {
-    this._reqframe;
   }
 
   Game.prototype.tick = function () {
-    //console.log('перезаписать');
+    console.warn("should overrided by childclass!");
+  };
 
+
+  Game.prototype.stop = function() {
+    if (this._reqframe) {
+      window.cancelAnimationFrame(this._reqframe);
+    }
+    this._reqframe = null;
+    this._running = false;
   };
 
   Game.prototype.run = function () {
+    if (this._running) return;
+    this._running = true;
 
     var self = this;
     function loop() {
       self._reqframe = window.requestAnimationFrame(loop);
+
       self.tick();
+
       input.clearPressed();
       canvas.flip();
     }

@@ -32,7 +32,7 @@ define(function () {
     for (var i = 0; i < n; i++) {
       s[i] = [];
       for (var j = 0; j < n; j++) {
-        s[i][j] = parseInt(shape[j + i * n]);
+        s[i][j] = parseInt(shape[j + i*n]);
       }
     }
     this._shapes.push(s);
